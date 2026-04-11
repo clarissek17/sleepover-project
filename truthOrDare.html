@@ -115,6 +115,13 @@ LATER UPDATES:
             margin-left: 2vw;
         }
 
+        #promptBox{
+            color: white;
+            font-size: 7vh;
+            margin-top: 5vh;
+            font-style: italic;
+        }
+
 
     </style>
 
@@ -138,6 +145,7 @@ LATER UPDATES:
             <div id="nameBox"></div>
             <button id="truthBtn" onclick="pickTruth()">Truth</button>
             <button id="dareBtn">Dare</button>
+            <div id="promptBox"></div>
         </div>
     </div>
 
@@ -152,6 +160,8 @@ LATER UPDATES:
         const playBtn = document.getElementById('playBtn');
         const lightbox = document.getElementById('lightbox');
         const nameBox = document.getElementById('nameBox');
+        const promptBox = document.getElementById('promptBox');
+
 
 
         let players = [];
@@ -274,8 +284,29 @@ LATER UPDATES:
 
         function pickTruth(){
 
+            let truth = getTruthPrompt();
+            console.log(truth)
+
+            promptBox.innerHTML = truth;
+
+
             // gets a truth from truths array
             // pops it up on the screen with confetti
+
+        }
+
+        function getTruthPrompt(){
+
+            let truths = [
+                "truth1",
+                "truth2",
+                "truth3"
+
+            ];
+
+            let truth = truths[Math.floor(Math.random() * truths.length)];
+
+            return truth;
 
         }
         
