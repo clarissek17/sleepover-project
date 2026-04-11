@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<!-- TO DO: -->
+<!--
+Make game run
+Add customization for each player
+Add selection mechanism
+Show truth on dare prompts
+Make an "ongoing" part
+Make a points system
+Add deleting players
+LATER UPDATES:
+- Dual Dares
+- Make a replace with sm1 else prompt
+
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truth Or Dare</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+
+            background-color: #1a1a1a;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #playBtn{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        #inputLayer {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        
+
+        input {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #lightbox {
+            display: none; /*changes to grid when lightbox opened*/
+            place-items: center;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #lightboxContent {
+            margin: 0 auto;
+        }
+
+        #nameBox{
+            color: white;
+            font-size: 7vh;
+            margin-bottom: 5vh;
+        }
+
+        #truthBtn{
+            background-color: rgba(255, 250, 163, 0.9);
+            width: 18vw;
+            height: 10vh;
+            font-size: 5vh;
+            margin-right: 2vw;
+        }
+
+        #dareBtn{
+            background-color: rgba(213, 23, 23, 0.9);
+            width: 18vw;
+            height: 10vh;
+            font-size: 5vh;
+            margin-left: 2vw;
+        }
+
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- The Screen -->
+
+    <canvas id="gameCanvas"></canvas>
+
+    <button id="playBtn" onclick="startGame()">Next Round</button>
+
+    <div id="inputLayer">
+        <input type="text" id="playerName" placeholder="Enter player name...">
+        <button id="addPlayerBtn">Add</button>
+    </div>
+
+    <div id="lightbox">
+        <div id="lightboxContent">
+            <div id="nameBox"></div>
+            <button id="truthBtn" onclick="pickTruth()">Truth</button>
+            <button id="dareBtn">Dare</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Variable declarations
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const nameInput = document.getElementById('playerName');
+        const addBtn = document.getElementById('addPlayerBtn');
+        const playBtn = document.getElementById('playBtn');
+        const lightbox = document.getElementById('lightbox');
+        const nameBox = document.getElementById('nameBox');
+
+
+        let players = [];
+        const SQUARE_SIZE = 50;
+
+        // GAME
+
+        window.addEventListener('resize', resize); // resize canvas to fit window
+        resize();
+
+        addBtn.addEventListener('click', addPlayer); // button click for spawning players
+
+        nameInput.addEventListener('keypress', (e) => { // enter key for spawning players
+            if (e.key === 'Enter') addPlayer();
+        });
+        
+        animate(); // canvas drawing stuff
+
+
+        
+        playBtn.addEventListener('click', () => { // open lightbox on click
+            lightbox.style.display = 'grid';
+        });
+
+        lightbox.addEventListener('click', (e) => { // close lightbox if background clicked
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+
+        // METHODS
+        
+        // handles player objects stuff
+        class Player {
+
+            // makes player objects
+            constructor(name) {
+                this.name = name;
+                this.size = SQUARE_SIZE;
+                
+                // random start position
+                this.x = Math.random() * (canvas.width - this.size);
+                this.y = Math.random() * (canvas.height - this.size);
+                
+                // random speed
+                this.dx = (Math.random() - 0.5) * 8; 
+                this.dy = (Math.random() - 0.5) * 8;
+                
+                // random color
+                this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            }
+
+            // wall physics and movement
+            update() {
+
+                // Bounce off Left/Right
+                if (this.x + this.size > canvas.width || this.x < 0) {
+                    this.dx = -this.dx;
+                }
+
+                // Bounce off Top/Bottom
+                if (this.y + this.size > canvas.height || this.y < 0) {
+                    this.dy = -this.dy;
+                }
+
+                // movement
+                this.x += this.dx;
+                this.y += this.dy;
+
+                this.draw();
+            }
+
+            // draws the players on the canvas
+            draw() {
+
+                // draws the square
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.size, this.size);
+                
+                // draws the name
+                ctx.fillStyle = "white";
+                ctx.font = "12px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(this.name, this.x + this.size/2, this.y - 5);
+            }
+        } // end of player class
+
+        // resizes canvas to fit window
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        // spawns new players when button clicked or enter pressed
+        function addPlayer() {
+            const name = nameInput.value.trim() || "Player " + (players.length + 1); // assign player name
+            players.push(new Player(name));
+            nameInput.value = ""; // clear input
+        }
+
+        // lets canvas draw stuff
+        function animate() {
+            // Clear the screen for the next frame
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            players.forEach(p => p.update());
+            
+            requestAnimationFrame(animate);
+        }
+
+        function startGame(){
+            
+            let turnPlayer = players[Math.floor(Math.random() * players.length)];
+            console.log(turnPlayer);
+
+            nameBox.innerHTML = 'heyy ' + turnPlayer.name + ' 😉💦👅'
+
+        }
+
+        function pickTruth(){
+
+            // gets a truth from truths array
+            // pops it up on the screen with confetti
+
+        }
+        
+
+    </script>
+</body>
+</html>
