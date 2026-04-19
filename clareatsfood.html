@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+
+    <!--
+    - x button
+    - star button
+    - select all
+    - modify once selected
+    - images and links
+    - LATER: filter by cuisine, tools
+    -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>clareatsfood recipe finder</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+
+    <style>
+    body{
+        margin-left: 10%;
+        margin-right: 10%;
+
+        background-color: rgb(252, 241, 227);
+        font-family: "Comfortaa", sans-serif;
+
+    }
+
+    #title{
+        font-size: 37px;
+        margin: 25px;
+        margin-left: 0px;
+        margin-right: 0px;
+
+    }
+    
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        padding: 10px;
+        gap: 10px;
+    }
+    .container div {
+        background-color: #f1f1f1;
+        border: 1px solid black;
+        padding: 10px;
+        font-size: 15px;
+        text-align: center;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #submit-btn{
+        background-color:#986b2f;
+        color: white;
+
+        padding: 10px;
+        text-align: center;
+        font-size: 15px;
+        margin-top: 20px;
+        width: 20vh;
+
+        width: fit-content;
+        margin: 40px auto;
+        display: block;
+
+        cursor: pointer;
+        border-radius: 50px;
+        border: none;
+    }
+
+    </style>
+    
+  </head>
+  
+  <body>
+    <div id="title">What's in your kitchen?</div>
+    <div>Left click the ingredients that you have or can easily buy. Right click on ingredients you don't like or cannot obtain.</div>
+    <br>
+
+    <div>Fruit and Veg</div>
+    <div id="fruit-veg-select" onclick="selectAll('fruit-veg')">Select All</div>
+    <div id="fruit-veg-con" class="container">
+        <div id="apples" onclick="add('apples')">Apples</div>
+        <div id="banana" onclick="add('banana')">Banana</div>
+        <div id="berries" onclick="add('berries')">Berries</div>
+        <div id="broccoli" onclick="add('broccoli')">Broccoli</div>
+        <div id="garlic" onclick="add('garlic')">Garlic</div>
+        <div id="onion" onclick="add('onion')">Onion</div>
+        <div id="zucchini" onclick="add('zucchini')">Zucchini</div>
+        <div id="squash" onclick="add('squash')">Squash</div>
+        <div id="bellpepper" onclick="add('bellpepper')">Bell Pepper (Produce)</div>
+        <div id="canned-tomatoes" onclick="add('canned-tomatoes')">Canned Tomatoes</div>
+    </div>
+
+    <div>Proteins</div>
+    <div id="protein-select" onclick="selectAll('protein')">Select All</div>
+    <div id="protein-con" class="container">
+        <div id="tofu" onclick="add('tofu')">Extra Firm Tofu</div>
+        <div id="turkey" onclick="add('turkey')">Ground Turkey</div>
+        <div id="white-beans" onclick="add('white-beans')">White Kidney Beans</div>
+    </div>
+
+    <div>Stuff in the Fridge</div>
+    <div id="fridge-select" onclick="selectAll('fridge')">Select All</div>
+    <div id="fridge-con" class="container">
+        <div id="stock" onclick="add('stock')">Stock</div>
+        <div id="yogurt" onclick="add('yogurt')">Greek Yogurt</div>
+        <div id="egg" onclick="add('egg')">Egg</div>
+        <div id="milk" onclick="add('milk')">Milk</div>
+        <div id="butter" onclick="add('butter')">Butter</div>
+        <div id="cream" onclick="add('cream')">Whipping Cream</div>
+        <div id="parmesan" onclick="add('parmesan')">Parmesan</div>
+        <div id="cottage-cheese" onclick="add('cottage-cheese')">Cottage Cheese</div>
+    </div>
+
+    <div>Spices</div>
+    <div id="spices-select" onclick="selectAll('spices')">Select All</div>
+    <div id="spices-con" class="container">
+        <div id="cinnamon" onclick="add('cinnamon')">Cinnamon</div>
+        <div id="garlic-powder" onclick="add('garlic-powder')">Garlic Powder</div>
+        <div id="ginger-powder" onclick="add('ginger-powder')">Ginger Powder</div>
+        <div id="paprika" onclick="add('paprika')">Paprika</div>
+        <div id="chili-flakes" onclick="add('chili-flakes')">Chili Flakes</div>
+        <div id="salt" onclick="add('salt')">Salt</div>
+        <div id="pepper-spice" onclick="add('pepper-spice')">Pepper (Spice)</div>
+    </div>
+
+    <div>Pantry Liquids</div>
+    <div id="pantry-liquid-select" onclick="selectAll('pantry-liquid')">Select All</div>
+    <div id="pantry-liquid-con" class="container">
+        <div id="vanilla" onclick="add('vanilla')">Vanilla</div>
+        <div id="oil" onclick="add('oil')">Oil</div>
+        <div id="honey" onclick="add('honey')">Honey</div>
+        <div id="maple-syrup" onclick="add('maple-syrup')">Maple Syrup</div>
+        <div id="acv" onclick="add('acv')">Apple Cider Vinegar</div>
+        <div id="shaoxing" onclick="add('shaoxing')">Shaoxing Wine</div>
+        <div id="soy-sauce" onclick="add('soy-sauce')">Soy Sauce</div>
+        <div id="oyster-sauce" onclick="add('oyster-sauce')">Oyster Sauce</div>
+        
+    </div>
+
+    <div>Dry Pantry Staples</div>
+    <div id="dry-pantry-select" onclick="selectAll('dry-pantry')">Select All</div>
+    <div id="dry-pantry-con" class="container">
+        <div id="pasta" onclick="add('pasta')">Pasta</div>
+        <div id="egg-noodles" onclick="add('egg-noodles')">Egg Noodles</div>
+        <div id="oats" onclick="add('oats')">Oats</div>
+        <div id="rice" onclick="add('rice')">Rice</div>
+        <div id="flour" onclick="add('flour')">Flour</div>
+        <div id="bpowder" onclick="add('bpowder')">Baking Powder</div>
+        <div id="cream-tartar" onclick="add('cream-tartar')">Cream of Tartar</div>
+        <div id="sugar" onclick="add('sugar')">Sugar</div>
+        <div id="icing-sugar" onclick="add('icing-sugar')">Icing Sugar</div>
+        <div id="brown-sugar" onclick="add('brown-sugar')">Brown Sugar</div>
+        <div id="chocolate-chips" onclick="add('chocolate-chips')">Chocolate Chips</div>
+        <div id="cornstarch" onclick="add('cornstarch')">Cornstarch</div>
+        <div id="gelatin" onclick="add('gelatin')">Gelatin</div>
+        <div id="yeast" onclick="add('yeast')">Yeast</div>
+    </div>
+    
+
+    <div id="submit-btn" onclick="calculate()">SUBMIT</div>
+
+    <div class="container" id="output">
+
+    </div>
+
+    </body>
+
+  <script>
+    let list = []
+    let output = document.getElementById('output');
+
+    let recipes = [
+        {
+            name: "Universal Flatbread",
+            link: "DOhPNwNktvpJsm7-nalsgNIu2ZzKnZCcEojuaQ0/",
+            ingredients: ["flour", "bpowder", "yogurt"]
+        },
+        {
+            name: "Fritter Pancakes",
+            link: "DOhQCTYEitmr1UoA1YOm9rndsiazDJWtG8dBEs0/",
+            ingredients: ["zucchini", "flour", "bpowder", "egg", "yogurt", "milk"]
+        },
+        {
+            name: "Ground Turkey Bowl",
+            link: "DR2QBAxibz9bqil3BLJOG0IOKWIt3zccwBQhkk0/",
+            ingredients: ["broccoli", "turkey", "onion", "rice", "pasta", "honey", "sugar", "soy-sauce", "garlic-powder", "ginger-powder", "paprika", "chili-flakes"]
+        },
+        {
+            name: "Baked Oats",
+            link: "DRQc_OoAdxnacXPX4tjb6TOQtrNYuvGMBCozR00/",
+            ingredients: ["banana", "oats", "milk", "bpowder", "berries", "yogurt"]
+        },
+        {
+            name: "Kugel",
+            link: "DQ9l4GUick5AR9pDrrUiqRCuelFflCeTKO3M3I0/",
+            ingredients: ["egg-noodles", "egg", "cottage-cheese", "yogurt", "salt", "sugar"]
+        },
+        {
+            name: "Garlic Bread Rolls",
+            link: "DQhOb5uiZTAU0cdkYQ6DdiGF0k0FMuN10r5Kt40/",
+            ingredients: ["milk", "sugar", "yeast", "butter", "egg", "salt", "garlic-powder", "flour", "garlic"]
+        },
+        {
+            name: "Crispy Tofu",
+            link: "DQFpG3IEjTHLqNpBBJ4se4D4G-30MCzJrOgHFI0/",
+            ingredients: ["garlic", "soy-sauce", "oyster-sauce", "shaoxing", "maple-syrup", "sugar", "acv", "cornstarch", "oil", "tofu"]
+        },
+        {
+            name: "Pasta Alfredo",
+            link: "DO9p5wWATRCVQhONvkGJdr3U7bbQaF6WfMKMyw0/",
+            ingredients: ["pasta", "broccoli", "butter", "garlic", "milk", "cream", "parmesan", "salt", "pepper-spice"]
+        },
+        {
+            name: "Shortbread",
+            link: "DOxQRUXjvet_jq26hjqkgb8PDwlIPw3fuIgqWA0/",
+            ingredients: ["butter", "icing-sugar", "flour"]
+        },
+        {
+            name: "Marshmallows",
+            link: "DOhRcHgksC7rCh5hWnzo0GKp-facK8th-pbGBc0/",
+            ingredients: ["gelatin", "sugar", "vanilla"]
+        },
+        {
+            name: "Vegetable Soup",
+            link: "DOhOcxfEhQZfWkJnQctw4Alh2-UHqou7MeN-So0/",
+            ingredients: ["onion", "zucchini", "bellpepper", "garlic-powder", "salt", "pepper-spice", "canned-tomatoes", "stock", "white-beans"]
+        },
+        {
+            name: "Apple Granola",
+            link: "DOhL2eiEk4U3bV5-9_-8_WtoQMaSD1UpPHs7OA0/",
+            ingredients: ["apples", "oats", "cinnamon"]
+        },
+        {
+            name: "Snickerdoodle Cookies",
+            link: "DSk7FnlEtWdHl1UuThAX6PFNxS9Evdoy4ZrILY0/",
+            ingredients: ["butter", "sugar", "egg", "vanilla", "honey", "flour", "cream-tartar", "bpowder", "salt", "cinnamon"]
+        },
+        {
+        name: "Oatmeal Chocolate Chip Cookies",
+        link: "DSk9rqhksk6zwL3xhq-bEqt7zOEw-sZmP8e_-o0/",
+        ingredients: ["butter", "sugar", "brown-sugar", "vanilla", "egg", "flour", "bpowder", "salt", "oats", "chocolate-chips"]
+    },
+    {
+        name: "Saltine Crackers",
+        link: "DSlDi8GEmdmpu8vweVYsX1VsfVDEHzWtoHoEHQ0/",
+        ingredients: ["flour", "bpowder", "butter", "milk", "salt", "egg"]
+    }
+    ];
+
+    function add(item){
+
+        if(!list.includes(item)){
+            list.push(item)
+            document.getElementById(item).style.backgroundColor = "#d9df96";
+        }
+        else if(list.includes(item)){
+            list.splice(list.indexOf(item), 1)
+            document.getElementById(item).style.backgroundColor = "#f1f1f1";
+        }
+
+        console.log(list)
+
+    }
+
+    function calculate() {
+
+       let ranking = recipes.map(recipe => {
+            let count = 0;
+
+            recipe.ingredients.forEach(ingredient =>{
+                if(list.includes(ingredient)){
+                    count++
+                }
+            } ) // forEach
+
+            return{
+                name: recipe.name,
+                link: recipe.link,
+                matches: count
+            }
+
+       }) // recipe map
+
+       ranking.sort((a,b) => b.matches - a.matches)
+
+       console.log(ranking)
+
+       reveal(ranking)
+        
+    }
+
+    function reveal(ranking){
+
+        output.innerHTML = ''
+
+        if(ranking[0].matches != 0){
+
+            ranking.forEach(recipe => {
+                let recipeDiv = document.createElement("div")
+                recipeDiv.classname = 'recipe-result'
+                recipeDiv.innerHTML = "<a href='https://www.instagram.com/p/" + recipe.link + "'>" + recipe.name + "</a>"
+                output.appendChild(recipeDiv);
+                console.log(recipe.link)
+            })
+
+        } else{
+            let recipeDiv = document.createElement("div")
+            recipeDiv.classname = 'recipe-result'
+            recipeDiv.innerHTML = "No recipes found"
+            output.appendChild(recipeDiv);
+        }
+
+        output.appendChild(document.createElement('div'));
+
+    }
+
+    function selectAll(Id) {
+        let select = document.getElementById("" + Id + "-select")
+        let container = document.getElementById("" + Id + "-con")
+        let options = container.querySelectorAll('div')
+
+        if(select.innerHTML == "Select All"){
+            options.forEach(div => {
+                if (!list.includes(div.id)) {
+                    add(div.id)
+                }
+            })
+            select.innerHTML = "Deselect All"
+        } else if (select.innerHTML = "Deselect All"){
+            options.forEach(div => {
+                if (!list.includes(div.id)) {
+                    add(div.id)
+                }
+            })
+
+            options.forEach(div => {
+                add(div.id);
+            })
+
+            select.innerHTML = "Select All"
+
+        } // if else
+    
+    }
+
+  </script>
+  
+</html>
