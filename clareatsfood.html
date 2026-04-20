@@ -3,11 +3,9 @@
   <head>
 
     <!--
-    - x button
     - star button
-    - select all
-    - modify once selected
-    - images and links
+    - if list is null then say no recipes (due to excluded foods)
+    - images
     - LATER: filter by cuisine, tools
     -->
 
@@ -35,6 +33,14 @@
         margin-right: 0px;
 
     }
+
+    .select-btn{
+        width: 10vw;
+        padding: 10px;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
     
     .container {
         display: grid;
@@ -80,85 +86,105 @@
     <div>Left click the ingredients that you have or can easily buy. Right click on ingredients you don't like or cannot obtain.</div>
     <br>
 
-    <div>Fruit and Veg</div>
-    <div id="fruit-veg-select" onclick="selectAll('fruit-veg')">Select All</div>
+    <div>Fruit and Veg
+    <span id="fruit-veg-select" class="select-btn" onclick="selectAll('fruit-veg')">Select All</span></div>
     <div id="fruit-veg-con" class="container">
-        <div id="apples" onclick="add('apples')">Apples</div>
-        <div id="banana" onclick="add('banana')">Banana</div>
-        <div id="berries" onclick="add('berries')">Berries</div>
-        <div id="broccoli" onclick="add('broccoli')">Broccoli</div>
-        <div id="garlic" onclick="add('garlic')">Garlic</div>
-        <div id="onion" onclick="add('onion')">Onion</div>
-        <div id="zucchini" onclick="add('zucchini')">Zucchini</div>
-        <div id="squash" onclick="add('squash')">Squash</div>
-        <div id="bellpepper" onclick="add('bellpepper')">Bell Pepper (Produce)</div>
-        <div id="canned-tomatoes" onclick="add('canned-tomatoes')">Canned Tomatoes</div>
+        <div id="apples" onclick="add('apples')" oncontextmenu="exclude('apples'); return false;">Apples</div>
+        <div id="banana" onclick="add('banana')" oncontextmenu="exclude('banana'); return false;">Banana</div>
+        <div id="berries" onclick="add('berries')" oncontextmenu="exclude('berries'); return false;">Berries</div>
+        <div id="garlic" onclick="add('garlic')" oncontextmenu="exclude('garlic'); return false;">Garlic</div>
+        <div id="onion" onclick="add('onion')" oncontextmenu="exclude('onion'); return false;">Onion</div>
+        <div id="green-onion" onclick="add('green-onion')" oncontextmenu="exclude('green-onion'); return false;">Green Onion</div>
+        <div id="zucchini" onclick="add('zucchini')" oncontextmenu="exclude('zucchini'); return false;">Zucchini</div>
+        <div id="squash" onclick="add('squash')" oncontextmenu="exclude('squash'); return false;">Squash</div>
+        <div id="bellpepper" onclick="add('bellpepper')" oncontextmenu="exclude('bellpepper'); return false;">Bell Pepper</div>
+        <div id="carrot" onclick="add('carrot')" oncontextmenu="exclude('carrot'); return false;">Carrot</div>
+        <div id="broccoli" onclick="add('broccoli')" oncontextmenu="exclude('broccoli'); return false;">Broccoli</div>
+        <div id="cauliflower" onclick="add('cauliflower')" oncontextmenu="exclude('cauliflower'); return false;">Cauliflower</div>
+        <div id="napa-cabbage" onclick="add('napa-cabbage')" oncontextmenu="exclude('napa-cabbage'); return false;">Napa Cabbage</div>
+        <div id="shiitake" onclick="add('shiitake')" oncontextmenu="exclude('shiitake'); return false;">Shiitake Mushrooms</div>
+        <div id="canned-tomatoes" onclick="add('canned-tomatoes')" oncontextmenu="exclude('canned-tomatoes'); return false;">Canned Tomatoes</div>
+        <div id="bamboo-shoots" onclick="add('bamboo-shoots')" oncontextmenu="exclude('bamboo-shoots'); return false;">Canned Bamboo Shoots</div>
+        <div id="water-chestnuts" onclick="add('water-chestnuts')" oncontextmenu="exclude('water-chestnuts'); return false;">Canned Water Chestnuts</div>
     </div>
 
-    <div>Proteins</div>
-    <div id="protein-select" onclick="selectAll('protein')">Select All</div>
+    <div>Proteins
+    <span id="protein-select" class="select-btn" onclick="selectAll('protein')">Select All</span></div>
     <div id="protein-con" class="container">
-        <div id="tofu" onclick="add('tofu')">Extra Firm Tofu</div>
-        <div id="turkey" onclick="add('turkey')">Ground Turkey</div>
-        <div id="white-beans" onclick="add('white-beans')">White Kidney Beans</div>
+        <div id="tofu" onclick="add('tofu')" oncontextmenu="exclude('tofu'); return false;">Extra Firm Tofu</div>
+        <div id="turkey" onclick="add('turkey')" oncontextmenu="exclude('turkey'); return false;">Ground Turkey</div>
+        <div id="pork" onclick="add('pork')" oncontextmenu="exclude('pork'); return false;">Ground Pork</div>
+        <div id="cashews" onclick="add('cashews')" oncontextmenu="exclude('cashews'); return false;">Cashews</div>
+        <div id="white-beans" onclick="add('white-beans')" oncontextmenu="exclude('white-beans'); return false;">Canned White Kidney Beans</div>
     </div>
 
-    <div>Stuff in the Fridge</div>
-    <div id="fridge-select" onclick="selectAll('fridge')">Select All</div>
+    <div>Stuff in the Fridge
+    <span id="fridge-select" class="select-btn" onclick="selectAll('fridge')">Select All</span></div>
     <div id="fridge-con" class="container">
-        <div id="stock" onclick="add('stock')">Stock</div>
-        <div id="yogurt" onclick="add('yogurt')">Greek Yogurt</div>
-        <div id="egg" onclick="add('egg')">Egg</div>
-        <div id="milk" onclick="add('milk')">Milk</div>
-        <div id="butter" onclick="add('butter')">Butter</div>
-        <div id="cream" onclick="add('cream')">Whipping Cream</div>
-        <div id="parmesan" onclick="add('parmesan')">Parmesan</div>
-        <div id="cottage-cheese" onclick="add('cottage-cheese')">Cottage Cheese</div>
+        <div id="egg" onclick="add('egg')" oncontextmenu="exclude('egg'); return false;">Egg</div>
+        <div id="milk" onclick="add('milk')" oncontextmenu="exclude('milk'); return false;">Milk</div>
+        <div id="butter" onclick="add('butter')" oncontextmenu="exclude('butter'); return false;">Butter</div>
+        <div id="cream" onclick="add('cream')" oncontextmenu="exclude('cream'); return false;">Whipping Cream</div>
+        <div id="yogurt" onclick="add('yogurt')" oncontextmenu="exclude('yogurt'); return false;">Greek Yogurt</div>
+        <div id="cottage-cheese" onclick="add('cottage-cheese')" oncontextmenu="exclude('cottage-cheese'); return false;">Cottage Cheese</div>
+        <div id="mozzarella" onclick="add('mozzarella')" oncontextmenu="exclude('mozzarella'); return false;">Mozzarella</div>
+        <div id="parmesan" onclick="add('parmesan')" oncontextmenu="exclude('parmesan'); return false;">Parmesan</div>
+        <div id="stock" onclick="add('stock')" oncontextmenu="exclude('stock'); return false;">Stock</div>
+        <div id="dumpling-wrappers" onclick="add('dumpling-wrappers')" oncontextmenu="exclude('dumpling-wrappers'); return false;">Dumpling Wrappers</div>
+        <div id="oyster-sauce" onclick="add('oyster-sauce')" oncontextmenu="exclude('oyster-sauce'); return false;">Oyster Sauce</div>
+        <div id="soy-sauce" onclick="add('soy-sauce')" oncontextmenu="exclude('soy-sauce'); return false;">Soy Sauce</div>
+        <div id="jelly" onclick="add('jelly')" oncontextmenu="exclude('jelly'); return false;">Jelly</div>
     </div>
 
-    <div>Spices</div>
-    <div id="spices-select" onclick="selectAll('spices')">Select All</div>
+    <div>Spices
+    <span id="spices-select" class="select-btn" onclick="selectAll('spices')">Select All</span></div>
     <div id="spices-con" class="container">
-        <div id="cinnamon" onclick="add('cinnamon')">Cinnamon</div>
-        <div id="garlic-powder" onclick="add('garlic-powder')">Garlic Powder</div>
-        <div id="ginger-powder" onclick="add('ginger-powder')">Ginger Powder</div>
-        <div id="paprika" onclick="add('paprika')">Paprika</div>
-        <div id="chili-flakes" onclick="add('chili-flakes')">Chili Flakes</div>
-        <div id="salt" onclick="add('salt')">Salt</div>
-        <div id="pepper-spice" onclick="add('pepper-spice')">Pepper (Spice)</div>
+        <div id="salt" onclick="add('salt')" oncontextmenu="exclude('salt'); return false;">Salt</div>
+        <div id="pepper-spice" onclick="add('pepper-spice')" oncontextmenu="exclude('pepper-spice'); return false;">Ground Black Pepper</div>
+        <div id="white-pepper" onclick="add('white-pepper')" oncontextmenu="exclude('white-pepper'); return false;">White Pepper</div>
+        <div id="paprika" onclick="add('paprika')" oncontextmenu="exclude('paprika'); return false;">Paprika</div>
+        <div id="chili-flakes" onclick="add('chili-flakes')" oncontextmenu="exclude('chili-flakes'); return false;">Chili Flakes</div>
+        <div id="italian-blend" onclick="add('italian-blend')" oncontextmenu="exclude('italian-blend'); return false;">Italian Seasoning Blend</div>
+        <div id="garlic-powder" onclick="add('garlic-powder')" oncontextmenu="exclude('garlic-powder'); return false;">Garlic Powder</div>
+        <div id="ginger-powder" onclick="add('ginger-powder')" oncontextmenu="exclude('ginger-powder'); return false;">Ginger Powder</div>
+        <div id="cinnamon" onclick="add('cinnamon')" oncontextmenu="exclude('cinnamon'); return false;">Cinnamon</div>
+        <div id="allspice" onclick="add('allspice')" oncontextmenu="exclude('allspice'); return false;">Allspice</div>
+        <div id="cloves" onclick="add('cloves')" oncontextmenu="exclude('cloves'); return false;">Cloves</div> 
     </div>
 
-    <div>Pantry Liquids</div>
-    <div id="pantry-liquid-select" onclick="selectAll('pantry-liquid')">Select All</div>
+    <div>Pantry Liquids
+    <span id="pantry-liquid-select" class="select-btn" onclick="selectAll('pantry-liquid')">Select All</span></div>
     <div id="pantry-liquid-con" class="container">
-        <div id="vanilla" onclick="add('vanilla')">Vanilla</div>
-        <div id="oil" onclick="add('oil')">Oil</div>
-        <div id="honey" onclick="add('honey')">Honey</div>
-        <div id="maple-syrup" onclick="add('maple-syrup')">Maple Syrup</div>
-        <div id="acv" onclick="add('acv')">Apple Cider Vinegar</div>
-        <div id="shaoxing" onclick="add('shaoxing')">Shaoxing Wine</div>
-        <div id="soy-sauce" onclick="add('soy-sauce')">Soy Sauce</div>
-        <div id="oyster-sauce" onclick="add('oyster-sauce')">Oyster Sauce</div>
-        
+        <div id="vanilla" onclick="add('vanilla')" oncontextmenu="exclude('vanilla'); return false;">Vanilla</div>
+        <div id="oil" onclick="add('oil')" oncontextmenu="exclude('oil'); return false;">Oil</div>
+        <div id="sesame-oil" onclick="add('sesame-oil')" oncontextmenu="exclude('sesame-oil'); return false;">Sesame Oil</div>
+        <div id="honey" onclick="add('honey')" oncontextmenu="exclude('honey'); return false;">Honey</div>
+        <div id="maple-syrup" onclick="add('maple-syrup')" oncontextmenu="exclude('maple-syrup'); return false;">Maple Syrup</div>
+        <div id="molasses" onclick="add('molasses')" oncontextmenu="exclude('molasses'); return false;">Molasses</div>
+        <div id="vinegar" onclick="add('vinegar')" oncontextmenu="exclude('vinegar'); return false;">Vinegar</div>
+        <div id="acv" onclick="add('acv')" oncontextmenu="exclude('acv'); return false;">Apple Cider Vinegar</div>
+        <div id="shaoxing" onclick="add('shaoxing')" oncontextmenu="exclude('shaoxing'); return false;">Shaoxing Wine</div>
     </div>
 
-    <div>Dry Pantry Staples</div>
-    <div id="dry-pantry-select" onclick="selectAll('dry-pantry')">Select All</div>
+    <div>Dry Pantry Staples
+    <span id="dry-pantry-select" class="select-btn" onclick="selectAll('dry-pantry')">Select All</span></div>
     <div id="dry-pantry-con" class="container">
-        <div id="pasta" onclick="add('pasta')">Pasta</div>
-        <div id="egg-noodles" onclick="add('egg-noodles')">Egg Noodles</div>
-        <div id="oats" onclick="add('oats')">Oats</div>
-        <div id="rice" onclick="add('rice')">Rice</div>
-        <div id="flour" onclick="add('flour')">Flour</div>
-        <div id="bpowder" onclick="add('bpowder')">Baking Powder</div>
-        <div id="cream-tartar" onclick="add('cream-tartar')">Cream of Tartar</div>
-        <div id="sugar" onclick="add('sugar')">Sugar</div>
-        <div id="icing-sugar" onclick="add('icing-sugar')">Icing Sugar</div>
-        <div id="brown-sugar" onclick="add('brown-sugar')">Brown Sugar</div>
-        <div id="chocolate-chips" onclick="add('chocolate-chips')">Chocolate Chips</div>
-        <div id="cornstarch" onclick="add('cornstarch')">Cornstarch</div>
-        <div id="gelatin" onclick="add('gelatin')">Gelatin</div>
-        <div id="yeast" onclick="add('yeast')">Yeast</div>
+        <div id="pasta" onclick="add('pasta')" oncontextmenu="exclude('pasta'); return false;">Pasta</div>
+        <div id="noodles" onclick="add('noodles')" oncontextmenu="exclude('noodles'); return false;">Noodles / Spaghetti</div>
+        <div id="oats" onclick="add('oats')" oncontextmenu="exclude('oats'); return false;">Oats</div>
+        <div id="rice" onclick="add('rice')" oncontextmenu="exclude('rice'); return false;">Rice</div>
+        <div id="flour" onclick="add('flour')" oncontextmenu="exclude('flour'); return false;">Flour</div>
+        <div id="cocoa" onclick="add('cocoa')" oncontextmenu="exclude('cocoa'); return false;">Cocoa Powder</div>
+        <div id="bpowder" onclick="add('bpowder')" oncontextmenu="exclude('bpowder'); return false;">Baking Powder</div>
+        <div id="bsoda" onclick="add('bsoda')" oncontextmenu="exclude('bsoda'); return false;">Baking Soda</div>
+        <div id="cream-tartar" onclick="add('cream-tartar')" oncontextmenu="exclude('cream-tartar'); return false;">Cream of Tartar</div>
+        <div id="sugar" onclick="add('sugar')" oncontextmenu="exclude('sugar'); return false;">Sugar</div>
+        <div id="icing-sugar" onclick="add('icing-sugar')" oncontextmenu="exclude('icing-sugar'); return false;">Icing Sugar</div>
+        <div id="brown-sugar" onclick="add('brown-sugar')" oncontextmenu="exclude('brown-sugar'); return false;">Brown Sugar</div>
+        <div id="chocolate-chips" onclick="add('chocolate-chips')" oncontextmenu="exclude('chocolate-chips'); return false;">Chocolate Chips</div>
+        <div id="cornstarch" onclick="add('cornstarch')" oncontextmenu="exclude('cornstarch'); return false;">Cornstarch</div>
+        <div id="gelatin" onclick="add('gelatin')" oncontextmenu="exclude('gelatin'); return false;">Gelatin</div>
+        <div id="yeast" onclick="add('yeast')" oncontextmenu="exclude('yeast'); return false;">Yeast</div>
     </div>
     
 
@@ -172,6 +198,7 @@
 
   <script>
     let list = []
+    let excluded = []
     let output = document.getElementById('output');
 
     let recipes = [
@@ -198,7 +225,7 @@
         {
             name: "Kugel",
             link: "DQ9l4GUick5AR9pDrrUiqRCuelFflCeTKO3M3I0/",
-            ingredients: ["egg-noodles", "egg", "cottage-cheese", "yogurt", "salt", "sugar"]
+            ingredients: ["noodles", "egg", "cottage-cheese", "yogurt", "salt", "sugar"]
         },
         {
             name: "Garlic Bread Rolls",
@@ -249,27 +276,87 @@
         name: "Saltine Crackers",
         link: "DSlDi8GEmdmpu8vweVYsX1VsfVDEHzWtoHoEHQ0/",
         ingredients: ["flour", "bpowder", "butter", "milk", "salt", "egg"]
+    },
+    {
+        name: "Zucchini Tomato Turkey Casserole",
+        link: "DTJxw90EYFCoX_0rYGPwSLUdXOMMCpJjYFyBLs0/",
+        ingredients: ["zucchini", "onion", "garlic", "turkey", "italian-blend", "salt", "pepper-spice", "canned-tomatoes", "mozzarella"]
+    },
+    {
+        name: "Sheetpan Layered Chocolate Cake",
+        link: "DTJeUc4kpdcwSrf8cnI4yBUTAHvi8M8PLdtGBA0/",
+        ingredients: ["flour", "sugar", "salt", "butter", "cocoa", "milk", "vinegar", "egg", "bsoda", "bpowder", "vanilla", "icing-sugar", "jelly"]
+    },
+    {
+        name: "Soft Gingerbread Cookies",
+        link: "DS3RbgAklzZ5plGokq3xITMO3rvDzZCwu4hYJw0/",
+        ingredients: ["butter", "brown-sugar", "molasses", "vanilla", "egg", "flour", "bsoda", "salt", "ginger-powder", "cinnamon", "allspice", "cloves"]
+    },
+    {
+        name: "Spaghetti Stir-Fry",
+        link: "",
+        ingredients: ["carrot", "cauliflower", "onion", "garlic", "broccoli", "napa-cabbage", "bellpepper", "tofu", "cornstarch", "pasta", "noodles", "soy-sauce", "oyster-sauce", "maple-syrup", "sesame-oil", "cashews"]
+    },
+    {
+        name: "Challah",
+        link: "",
+        ingredients: ["yeast", "sugar", "oil", "egg", "flour", "salt"]
+    },
+    {
+        name: "Pork Jiaozi",
+        link: "",
+        ingredients: ["pork", "napa-cabbage", "carrot", "green-onion", "shiitake", "bamboo-shoots", "water-chestnuts", "shaoxing", "sesame-oil", "soy-sauce", "salt", "white-pepper", "garlic-powder", "ginger-powder", "oil", "dumpling-wrappers"]
     }
-    ];
+    ]
 
     function add(item){
 
+        if(excluded.includes(item)){
+            excluded.splice(excluded.indexOf(item), 1)
+            document.getElementById(item).style.textDecoration = "none"
+        }
+
         if(!list.includes(item)){
             list.push(item)
-            document.getElementById(item).style.backgroundColor = "#d9df96";
+            document.getElementById(item).style.backgroundColor = "#d9df96"
         }
         else if(list.includes(item)){
             list.splice(list.indexOf(item), 1)
-            document.getElementById(item).style.backgroundColor = "#f1f1f1";
+            document.getElementById(item).style.backgroundColor = "#f1f1f1"
         }
 
         console.log(list)
 
     }
 
+    function exclude(item){
+
+        if(list.includes(item)){
+            list.splice(list.indexOf(item), 1)
+        }
+
+        if(!excluded.includes(item)){
+            excluded.push(item)
+            document.getElementById(item).style.backgroundColor = "#8f7a7a"
+            document.getElementById(item).style.textDecoration = "line-through"
+
+        }
+        else if(excluded.includes(item)){
+            excluded.splice(excluded.indexOf(item), 1)
+            document.getElementById(item).style.backgroundColor = "#f1f1f1";
+            document.getElementById(item).style.textDecoration = "none"
+        }
+
+
+    }
+
     function calculate() {
 
-       let ranking = recipes.map(recipe => {
+        let filteredRecipes = recipes.filter(recipe => {
+            return !recipe.ingredients.some(ingredient => excluded.includes(ingredient))
+        })
+
+        let ranking = filteredRecipes.map(recipe => {
             let count = 0;
 
             recipe.ingredients.forEach(ingredient =>{
@@ -288,8 +375,6 @@
 
        ranking.sort((a,b) => b.matches - a.matches)
 
-       console.log(ranking)
-
        reveal(ranking)
         
     }
@@ -298,7 +383,7 @@
 
         output.innerHTML = ''
 
-        if(ranking[0].matches != 0){
+        //if(ranking[0].matches != 0){
 
             ranking.forEach(recipe => {
                 let recipeDiv = document.createElement("div")
@@ -308,12 +393,12 @@
                 console.log(recipe.link)
             })
 
-        } else{
+        /*} else{
             let recipeDiv = document.createElement("div")
             recipeDiv.classname = 'recipe-result'
             recipeDiv.innerHTML = "No recipes found"
             output.appendChild(recipeDiv);
-        }
+        }*/
 
         output.appendChild(document.createElement('div'));
 
