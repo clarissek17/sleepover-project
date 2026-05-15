@@ -3,11 +3,10 @@
   <head>
 
     <!--
-    - star button
-    - if list is null then say no recipes (due to excluded foods)
-    - remove the silly extra box
-    - images
-    - LATER: filter by cuisine, tools
+    to add later
+    - star ingredient button
+    - filter by cuisine
+    - filter by tools required
     -->
 
     <meta charset="utf-8">
@@ -69,9 +68,9 @@
         0 0 15px 3px #ffffff,
         3px 3px 5px 3px #95875c;
     }
-
     .container div:hover{
         box-shadow: 3px 3px 5px 3px #e8dab5;
+        transform: translateY(-5px);
     }
 
     .twoLine{
@@ -99,7 +98,6 @@
         margin: 5vh auto;
         display: block;
     }
-
     #submit-btn:hover{
         box-shadow: 3px 3px 5px 3px #e8dab5;
     }
@@ -127,30 +125,21 @@
     }
 
     .recipe-image{
-        height: 17vh;
+        height: 20vh;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2vh;
     }
 
     .recipe-result{
         display: grid;
         grid-template-rows: 1fr;
-        height: 20vh !important;
+        margin-bottom: 1vh;
+        height: 27vh !important;
     }
-
-    /*
-    .recipe-result {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #ffffff99;
-        padding: 15px;
-        border-radius: 20px;
-        box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-    }
-
     .recipe-result:hover {
         transform: translateY(-5px);
-    }*/
+    }
 
     /*.recipe-image {
         width: 100%;
@@ -308,19 +297,16 @@
         {
             name: "Universal Flatbread",
             link: "DOhPNwNktvpJsm7-nalsgNIu2ZzKnZCcEojuaQ0/",
-            pic: "images/UniversalFlatbread.png",
             ingredients: ["flour", "bpowder", "yogurt"]
         },
         {
             name: "Fritter Pancakes",
             link: "DOhQCTYEitmr1UoA1YOm9rndsiazDJWtG8dBEs0/",
-            pic: "images/FritterPancakes.png",
             ingredients: ["zucchini", "flour", "bpowder", "egg", "yogurt", "milk"]
         },
         {
             name: "Ground Turkey Bowl",
             link: "DR2QBAxibz9bqil3BLJOG0IOKWIt3zccwBQhkk0/",
-            pic: "images/GroundTurkeyBowl.png",
             ingredients: ["broccoli", "turkey", "onion", "rice", "pasta", "honey", "sugar", "soy-sauce", "garlic-powder", "ginger-powder", "paprika", "chili-flakes"]
         },
         {
@@ -374,9 +360,9 @@
             ingredients: ["butter", "sugar", "egg", "vanilla", "honey", "flour", "cream-tartar", "bpowder", "salt", "cinnamon"]
         },
         {
-        name: "Oatmeal Chocolate Chip Cookies",
-        link: "DSk9rqhksk6zwL3xhq-bEqt7zOEw-sZmP8e_-o0/",
-        ingredients: ["butter", "sugar", "brown-sugar", "vanilla", "egg", "flour", "bpowder", "salt", "oats", "chocolate-chips"]
+            name: "Oatmeal Chocolate Chip Cookies",
+            link: "DSk9rqhksk6zwL3xhq-bEqt7zOEw-sZmP8e_-o0/",
+            ingredients: ["butter", "sugar", "brown-sugar", "vanilla", "egg", "flour", "bpowder", "salt", "oats", "chocolate-chips"]
         },
         {
             name: "Saltine Crackers",
@@ -499,19 +485,19 @@
                 if(list.includes(ingredient)){
                     count++
                 }
-            } ) // forEach
+            } ) // end of forEach
 
             return{
                 name: recipe.name,
                 link: recipe.link,
                 matches: count
-            }
+            } // end of return
 
-       }) // recipe map
+        }) // end of recipe map
 
-       ranking.sort((a,b) => b.matches - a.matches)
+        ranking.sort((a,b) => b.matches - a.matches)
 
-       reveal(ranking)
+        reveal(ranking)
         
     }
 
@@ -528,7 +514,7 @@
             recipeDiv.className = 'recipe-result'
 
             let pic = document.createElement("img")
-            pic.src = recipe.pic || 'images/Kugel.png' 
+            pic.src = 'images/' + recipe.name + '.png' /* || 'images/Kugel.png' */
             pic.className = 'recipe-image'
 
             let link = document.createElement("a")
@@ -567,7 +553,7 @@
 
             select.innerHTML = "Select All"
 
-        } // if else
+        }
     
     }
 
