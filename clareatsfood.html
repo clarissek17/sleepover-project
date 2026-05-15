@@ -5,6 +5,7 @@
     <!--
     - star button
     - if list is null then say no recipes (due to excluded foods)
+    - remove the silly extra box
     - images
     - LATER: filter by cuisine, tools
     -->
@@ -41,41 +42,132 @@
         cursor: pointer;
     }
 
+    .subhead{
+        margin-top: 5vh;
+        margin-bottom: 1.5vh;
+        font-size: 23px;
+    }
+
     
     .container {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         padding: 10px;
-        gap: 10px;
+        gap: 20px;
     }
     .container div {
+        height: 4vh;
         background-color: #f1f1f1;
-        border: 1px solid black;
         padding: 10px;
+        padding-top: 2.5vh;
         font-size: 15px;
         text-align: center;
         border-radius: 20px;
         cursor: pointer;
+
+        box-shadow:
+        0 0 15px 3px #ffffff,
+        3px 3px 5px 3px #95875c;
+    }
+
+    .container div:hover{
+        box-shadow: 3px 3px 5px 3px #e8dab5;
+    }
+
+    .twoLine{
+        padding-top: 1.8vh !important;
+        padding-bottom: 2.2vh !important;
     }
 
     #submit-btn{
-        background-color:#986b2f;
-        color: white;
-
+        
+        height: 4vh;
+        background-color: #f1f1f1;
         padding: 10px;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        font-size: 23px;
         text-align: center;
-        font-size: 15px;
-        margin-top: 20px;
-        width: 20vh;
-
-        width: fit-content;
-        margin: 40px auto;
-        display: block;
-
+        border-radius: 20px;
         cursor: pointer;
-        border-radius: 50px;
-        border: none;
+
+        box-shadow:
+        0 0 15px 3px #ffffff,
+        3px 3px 5px 3px #95875c;
+
+        width: 25vh;
+        margin: 5vh auto;
+        display: block;
     }
+
+    #submit-btn:hover{
+        box-shadow: 3px 3px 5px 3px #e8dab5;
+    }
+
+    /*.recipe-result{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .recipe-image{
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 2px 2px 8px #0000001a;
+    }*/
+
+    #output {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        padding: 10px;
+        gap: 20px;
+    }
+
+    .recipe-image{
+        height: 17vh;
+    }
+
+    .recipe-result{
+        display: grid;
+        grid-template-rows: 1fr;
+        height: 20vh !important;
+    }
+
+    /*
+    .recipe-result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff99;
+        padding: 15px;
+        border-radius: 20px;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .recipe-result:hover {
+        transform: translateY(-5px);
+    }*/
+
+    /*.recipe-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+    
+
+    .recipe-result a {
+        text-decoration: none;
+        color: #4a4a4a;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+    }*/
 
     </style>
     
@@ -86,39 +178,45 @@
     <div>Left click the ingredients that you have or can easily buy. Right click on ingredients you don't like or cannot obtain.</div>
     <br>
 
-    <div>Fruit and Veg
+    <div class="subhead">Fruit and Veg
     <span id="fruit-veg-select" class="select-btn" onclick="selectAll('fruit-veg')">Select All</span></div>
     <div id="fruit-veg-con" class="container">
         <div id="apples" onclick="add('apples')" oncontextmenu="exclude('apples'); return false;">Apples</div>
         <div id="banana" onclick="add('banana')" oncontextmenu="exclude('banana'); return false;">Banana</div>
         <div id="berries" onclick="add('berries')" oncontextmenu="exclude('berries'); return false;">Berries</div>
+        <div id="lemon" onclick="add('lemon')" oncontextmenu="exclude('lemon'); return false;">Lemon</div>
         <div id="garlic" onclick="add('garlic')" oncontextmenu="exclude('garlic'); return false;">Garlic</div>
         <div id="onion" onclick="add('onion')" oncontextmenu="exclude('onion'); return false;">Onion</div>
         <div id="green-onion" onclick="add('green-onion')" oncontextmenu="exclude('green-onion'); return false;">Green Onion</div>
+        <div id="parsely" onclick="add('parsely')" oncontextmenu="exclude('parsely'); return false;">Parsely</div>
         <div id="zucchini" onclick="add('zucchini')" oncontextmenu="exclude('zucchini'); return false;">Zucchini</div>
         <div id="squash" onclick="add('squash')" oncontextmenu="exclude('squash'); return false;">Squash</div>
         <div id="bellpepper" onclick="add('bellpepper')" oncontextmenu="exclude('bellpepper'); return false;">Bell Pepper</div>
+        <div id="cherry-tomato" onclick="add('cherry-tomato')" oncontextmenu="exclude('cherry-tomato'); return false;">Cherry Tomatoes</div>
         <div id="carrot" onclick="add('carrot')" oncontextmenu="exclude('carrot'); return false;">Carrot</div>
         <div id="broccoli" onclick="add('broccoli')" oncontextmenu="exclude('broccoli'); return false;">Broccoli</div>
         <div id="cauliflower" onclick="add('cauliflower')" oncontextmenu="exclude('cauliflower'); return false;">Cauliflower</div>
         <div id="napa-cabbage" onclick="add('napa-cabbage')" oncontextmenu="exclude('napa-cabbage'); return false;">Napa Cabbage</div>
         <div id="shiitake" onclick="add('shiitake')" oncontextmenu="exclude('shiitake'); return false;">Shiitake Mushrooms</div>
+        <div id="ginger" onclick="add('ginger')" oncontextmenu="exclude('ginger'); return false;">Ginger Root</div>
+        <div id="potatoes" onclick="add('potatoes')" oncontextmenu="exclude('potatoes'); return false;">Potatoes</div>
         <div id="canned-tomatoes" onclick="add('canned-tomatoes')" oncontextmenu="exclude('canned-tomatoes'); return false;">Canned Tomatoes</div>
-        <div id="bamboo-shoots" onclick="add('bamboo-shoots')" oncontextmenu="exclude('bamboo-shoots'); return false;">Canned Bamboo Shoots</div>
-        <div id="water-chestnuts" onclick="add('water-chestnuts')" oncontextmenu="exclude('water-chestnuts'); return false;">Canned Water Chestnuts</div>
+        <div id="bamboo-shoots" class="twoLine" onclick="add('bamboo-shoots')" oncontextmenu="exclude('bamboo-shoots'); return false;">Canned Bamboo Shoots</div>
+        <div id="water-chestnuts" class="twoLine" onclick="add('water-chestnuts')" oncontextmenu="exclude('water-chestnuts'); return false;">Canned Water Chestnuts</div>
     </div>
 
-    <div>Proteins
+    <div class="subhead">Proteins
     <span id="protein-select" class="select-btn" onclick="selectAll('protein')">Select All</span></div>
     <div id="protein-con" class="container">
         <div id="tofu" onclick="add('tofu')" oncontextmenu="exclude('tofu'); return false;">Extra Firm Tofu</div>
         <div id="turkey" onclick="add('turkey')" oncontextmenu="exclude('turkey'); return false;">Ground Turkey</div>
         <div id="pork" onclick="add('pork')" oncontextmenu="exclude('pork'); return false;">Ground Pork</div>
+        <div id="nuts" onclick="add('nuts')" oncontextmenu="exclude('nuts'); return false;">Nuts</div>
         <div id="cashews" onclick="add('cashews')" oncontextmenu="exclude('cashews'); return false;">Cashews</div>
-        <div id="white-beans" onclick="add('white-beans')" oncontextmenu="exclude('white-beans'); return false;">Canned White Kidney Beans</div>
+        <div id="white-beans" class="twoLine" onclick="add('white-beans')" oncontextmenu="exclude('white-beans'); return false;">Canned White Kidney Beans</div>
     </div>
 
-    <div>Stuff in the Fridge
+    <div class="subhead">Stuff in the Fridge
     <span id="fridge-select" class="select-btn" onclick="selectAll('fridge')">Select All</span></div>
     <div id="fridge-con" class="container">
         <div id="egg" onclick="add('egg')" oncontextmenu="exclude('egg'); return false;">Egg</div>
@@ -133,18 +231,20 @@
         <div id="dumpling-wrappers" onclick="add('dumpling-wrappers')" oncontextmenu="exclude('dumpling-wrappers'); return false;">Dumpling Wrappers</div>
         <div id="oyster-sauce" onclick="add('oyster-sauce')" oncontextmenu="exclude('oyster-sauce'); return false;">Oyster Sauce</div>
         <div id="soy-sauce" onclick="add('soy-sauce')" oncontextmenu="exclude('soy-sauce'); return false;">Soy Sauce</div>
+        <div id="peanut-butter" onclick="add('peanut-butter')" oncontextmenu="exclude('peanut-butter'); return false;">Peanut Butter</div>
         <div id="jelly" onclick="add('jelly')" oncontextmenu="exclude('jelly'); return false;">Jelly</div>
+        <div id="applesauce" onclick="add('applesauce')" oncontextmenu="exclude('applesauce'); return false;">Applesauce</div>
     </div>
 
-    <div>Spices
+    <div class="subhead">Spices
     <span id="spices-select" class="select-btn" onclick="selectAll('spices')">Select All</span></div>
     <div id="spices-con" class="container">
         <div id="salt" onclick="add('salt')" oncontextmenu="exclude('salt'); return false;">Salt</div>
-        <div id="pepper-spice" onclick="add('pepper-spice')" oncontextmenu="exclude('pepper-spice'); return false;">Ground Black Pepper</div>
+        <div id="pepper-spice" class="twoLine" onclick="add('pepper-spice')" oncontextmenu="exclude('pepper-spice'); return false;">Ground Black Pepper</div>
         <div id="white-pepper" onclick="add('white-pepper')" oncontextmenu="exclude('white-pepper'); return false;">White Pepper</div>
         <div id="paprika" onclick="add('paprika')" oncontextmenu="exclude('paprika'); return false;">Paprika</div>
         <div id="chili-flakes" onclick="add('chili-flakes')" oncontextmenu="exclude('chili-flakes'); return false;">Chili Flakes</div>
-        <div id="italian-blend" onclick="add('italian-blend')" oncontextmenu="exclude('italian-blend'); return false;">Italian Seasoning Blend</div>
+        <div id="italian-blend" class="twoLine" onclick="add('italian-blend')" oncontextmenu="exclude('italian-blend'); return false;">Italian Seasoning Blend</div>
         <div id="garlic-powder" onclick="add('garlic-powder')" oncontextmenu="exclude('garlic-powder'); return false;">Garlic Powder</div>
         <div id="ginger-powder" onclick="add('ginger-powder')" oncontextmenu="exclude('ginger-powder'); return false;">Ginger Powder</div>
         <div id="cinnamon" onclick="add('cinnamon')" oncontextmenu="exclude('cinnamon'); return false;">Cinnamon</div>
@@ -152,7 +252,7 @@
         <div id="cloves" onclick="add('cloves')" oncontextmenu="exclude('cloves'); return false;">Cloves</div> 
     </div>
 
-    <div>Pantry Liquids
+    <div class="subhead">Pantry Liquids
     <span id="pantry-liquid-select" class="select-btn" onclick="selectAll('pantry-liquid')">Select All</span></div>
     <div id="pantry-liquid-con" class="container">
         <div id="vanilla" onclick="add('vanilla')" oncontextmenu="exclude('vanilla'); return false;">Vanilla</div>
@@ -166,13 +266,14 @@
         <div id="shaoxing" onclick="add('shaoxing')" oncontextmenu="exclude('shaoxing'); return false;">Shaoxing Wine</div>
     </div>
 
-    <div>Dry Pantry Staples
+    <div class="subhead">Dry Pantry Staples
     <span id="dry-pantry-select" class="select-btn" onclick="selectAll('dry-pantry')">Select All</span></div>
     <div id="dry-pantry-con" class="container">
         <div id="pasta" onclick="add('pasta')" oncontextmenu="exclude('pasta'); return false;">Pasta</div>
         <div id="noodles" onclick="add('noodles')" oncontextmenu="exclude('noodles'); return false;">Noodles / Spaghetti</div>
         <div id="oats" onclick="add('oats')" oncontextmenu="exclude('oats'); return false;">Oats</div>
         <div id="rice" onclick="add('rice')" oncontextmenu="exclude('rice'); return false;">Rice</div>
+        <div id="grains" onclick="add('grains')" oncontextmenu="exclude('grains'); return false;">Couscous / Bulgur / Quinoa</div>
         <div id="flour" onclick="add('flour')" oncontextmenu="exclude('flour'); return false;">Flour</div>
         <div id="cocoa" onclick="add('cocoa')" oncontextmenu="exclude('cocoa'); return false;">Cocoa Powder</div>
         <div id="bpowder" onclick="add('bpowder')" oncontextmenu="exclude('bpowder'); return false;">Baking Powder</div>
@@ -182,6 +283,8 @@
         <div id="icing-sugar" onclick="add('icing-sugar')" oncontextmenu="exclude('icing-sugar'); return false;">Icing Sugar</div>
         <div id="brown-sugar" onclick="add('brown-sugar')" oncontextmenu="exclude('brown-sugar'); return false;">Brown Sugar</div>
         <div id="chocolate-chips" onclick="add('chocolate-chips')" oncontextmenu="exclude('chocolate-chips'); return false;">Chocolate Chips</div>
+        <div id="museli" onclick="add('museli')" oncontextmenu="exclude('museli'); return false;">Museli</div>
+        <div id="flax" onclick="add('flax')" oncontextmenu="exclude('flax'); return false;">Milled Flax Seed</div>
         <div id="cornstarch" onclick="add('cornstarch')" oncontextmenu="exclude('cornstarch'); return false;">Cornstarch</div>
         <div id="gelatin" onclick="add('gelatin')" oncontextmenu="exclude('gelatin'); return false;">Gelatin</div>
         <div id="yeast" onclick="add('yeast')" oncontextmenu="exclude('yeast'); return false;">Yeast</div>
@@ -205,16 +308,19 @@
         {
             name: "Universal Flatbread",
             link: "DOhPNwNktvpJsm7-nalsgNIu2ZzKnZCcEojuaQ0/",
+            pic: "images/UniversalFlatbread.png",
             ingredients: ["flour", "bpowder", "yogurt"]
         },
         {
             name: "Fritter Pancakes",
             link: "DOhQCTYEitmr1UoA1YOm9rndsiazDJWtG8dBEs0/",
+            pic: "images/FritterPancakes.png",
             ingredients: ["zucchini", "flour", "bpowder", "egg", "yogurt", "milk"]
         },
         {
             name: "Ground Turkey Bowl",
             link: "DR2QBAxibz9bqil3BLJOG0IOKWIt3zccwBQhkk0/",
+            pic: "images/GroundTurkeyBowl.png",
             ingredients: ["broccoli", "turkey", "onion", "rice", "pasta", "honey", "sugar", "soy-sauce", "garlic-powder", "ginger-powder", "paprika", "chili-flakes"]
         },
         {
@@ -271,42 +377,72 @@
         name: "Oatmeal Chocolate Chip Cookies",
         link: "DSk9rqhksk6zwL3xhq-bEqt7zOEw-sZmP8e_-o0/",
         ingredients: ["butter", "sugar", "brown-sugar", "vanilla", "egg", "flour", "bpowder", "salt", "oats", "chocolate-chips"]
-    },
-    {
-        name: "Saltine Crackers",
-        link: "DSlDi8GEmdmpu8vweVYsX1VsfVDEHzWtoHoEHQ0/",
-        ingredients: ["flour", "bpowder", "butter", "milk", "salt", "egg"]
-    },
-    {
-        name: "Zucchini Tomato Turkey Casserole",
-        link: "DTJxw90EYFCoX_0rYGPwSLUdXOMMCpJjYFyBLs0/",
-        ingredients: ["zucchini", "onion", "garlic", "turkey", "italian-blend", "salt", "pepper-spice", "canned-tomatoes", "mozzarella"]
-    },
-    {
-        name: "Sheetpan Layered Chocolate Cake",
-        link: "DTJeUc4kpdcwSrf8cnI4yBUTAHvi8M8PLdtGBA0/",
-        ingredients: ["flour", "sugar", "salt", "butter", "cocoa", "milk", "vinegar", "egg", "bsoda", "bpowder", "vanilla", "icing-sugar", "jelly"]
-    },
-    {
-        name: "Soft Gingerbread Cookies",
-        link: "DS3RbgAklzZ5plGokq3xITMO3rvDzZCwu4hYJw0/",
-        ingredients: ["butter", "brown-sugar", "molasses", "vanilla", "egg", "flour", "bsoda", "salt", "ginger-powder", "cinnamon", "allspice", "cloves"]
-    },
-    {
-        name: "Spaghetti Stir-Fry",
-        link: "",
-        ingredients: ["carrot", "cauliflower", "onion", "garlic", "broccoli", "napa-cabbage", "bellpepper", "tofu", "cornstarch", "pasta", "noodles", "soy-sauce", "oyster-sauce", "maple-syrup", "sesame-oil", "cashews"]
-    },
-    {
-        name: "Challah",
-        link: "",
-        ingredients: ["yeast", "sugar", "oil", "egg", "flour", "salt"]
-    },
-    {
-        name: "Pork Jiaozi",
-        link: "",
-        ingredients: ["pork", "napa-cabbage", "carrot", "green-onion", "shiitake", "bamboo-shoots", "water-chestnuts", "shaoxing", "sesame-oil", "soy-sauce", "salt", "white-pepper", "garlic-powder", "ginger-powder", "oil", "dumpling-wrappers"]
-    }
+        },
+        {
+            name: "Saltine Crackers",
+            link: "DSlDi8GEmdmpu8vweVYsX1VsfVDEHzWtoHoEHQ0/",
+            ingredients: ["flour", "bpowder", "butter", "milk", "salt", "egg"]
+        },
+        {
+            name: "Zucchini Tomato Turkey Casserole",
+            link: "DTJxw90EYFCoX_0rYGPwSLUdXOMMCpJjYFyBLs0/",
+            ingredients: ["zucchini", "onion", "garlic", "turkey", "italian-blend", "salt", "pepper-spice", "canned-tomatoes", "mozzarella"]
+        },
+        {
+            name: "Sheetpan Layered Chocolate Cake",
+            link: "DTJeUc4kpdcwSrf8cnI4yBUTAHvi8M8PLdtGBA0/",
+            ingredients: ["flour", "sugar", "salt", "butter", "cocoa", "milk", "vinegar", "egg", "bsoda", "bpowder", "vanilla", "icing-sugar", "jelly"]
+        },
+        {
+            name: "Soft Gingerbread Cookies",
+            link: "DS3RbgAklzZ5plGokq3xITMO3rvDzZCwu4hYJw0/",
+            ingredients: ["butter", "brown-sugar", "molasses", "vanilla", "egg", "flour", "bsoda", "salt", "ginger-powder", "cinnamon", "allspice", "cloves"]
+        },
+        {
+            name: "Spaghetti Stir-Fry",
+            link: "DTYoGl4kp257J0KiLtfBRYW0MWfvl4fvVlTvsY0/",
+            ingredients: ["carrot", "cauliflower", "onion", "garlic", "broccoli", "napa-cabbage", "bellpepper", "tofu", "cornstarch", "pasta", "noodles", "soy-sauce", "oyster-sauce", "maple-syrup", "sesame-oil", "cashews"]
+        },
+        {
+            name: "Challah",
+            link: "DT64Di5jqwg96DBBvwoDerz0EeKumYbLSxkAPo0/",
+            ingredients: ["yeast", "sugar", "oil", "egg", "flour", "salt"]
+        },
+        {
+            name: "Pork Jiaozi",
+            link: "DVB2HV-D94x_YOAGEE9trnOxMnWz2sneoilgYI0/?img_index=1",
+            ingredients: ["pork", "napa-cabbage", "carrot", "green-onion", "shiitake", "bamboo-shoots", "water-chestnuts", "shaoxing", "sesame-oil", "soy-sauce", "salt", "white-pepper", "garlic-powder", "ginger-powder", "oil", "dumpling-wrappers", "ginger"]
+        },
+        {
+            name: "Vegetarian Jiaozi",
+            link: "DVC2TVZkXzR4w8ooREnVq1KzfOgdnRlpxBP47I0/",
+            ingredients: ["napa-cabbage", "carrot", "onion", "shiitake", "bamboo-shoots", "water-chestnuts", "green-onion", "shaoxing", "sesame-oil", "soy-sauce", "white-pepper", "garlic-powder", "ginger-powder", "salt", "sugar", "oil", "dumpling-wrappers"]
+        },
+        {
+            name: "Latkes",
+            link: "DVC3jw8EVIiLLS1qsPvZ84m5kEOdYPkYddlOCE0/",
+            ingredients: ["potatoes", "oil", "salt"]
+        },
+        {
+            name: "Baked Potato",
+            link: "DVFHAepAWjtGBbxculB9DyO7kMBH5sbdLg_yLY0/",
+            ingredients: ["potatoes", "salt"]
+        },
+        {
+            name: "Vegetarian Bowl",
+            link: "DVzm_9uibdfiE4jq9EVX08nYuXn4EBcDSnRb4I0/",
+            ingredients: ["tofu", "soy-sauce", "garlic-powder", "ginger-powder", "stock", "rice", "grains", "carrot", "broccoli"]
+        },
+        {
+            name: "Carmelized Onion Pasta",
+            link: "DWMf9StFAo-a3h6Z67bUqfV7zFcMbsyHJWhuas0/",
+            ingredients: ["onion", "garlic", "paprika", "garlic-powder", "salt", "pepper-spice", "italian-blend", "oil", "pasta", "parmesan", "lemon", "soy-sauce", "cream", "parsely", "cherry-tomato", "mozzarella"]
+        },
+        {
+            name: "Peanut Butter Breakfast Cookies",
+            link: "DWMjQtqD1ecBzO9MlORU4kBGJKFIP7IfOx6E3g0/",
+            ingredients: ["apples", "oats", "salt", "cinnamon", "flax", "applesauce", "banana", "maple-syrup", "peanut-butter", "nuts", "cashews", "museli", "chocolate-chips"]
+        }
     ]
 
     function add(item){
@@ -379,29 +515,31 @@
         
     }
 
-    function reveal(ranking){
-
+    function reveal(ranking) {
         output.innerHTML = ''
 
-        //if(ranking[0].matches != 0){
+        if (ranking.length === 0) {
+            output.innerHTML = "<div style='grid-column: 1/-1;'>No recipes found based on your exclusions.</div>"
+            return
+        }
 
-            ranking.forEach(recipe => {
-                let recipeDiv = document.createElement("div")
-                recipeDiv.classname = 'recipe-result'
-                recipeDiv.innerHTML = "<a href='https://www.instagram.com/p/" + recipe.link + "'>" + recipe.name + "</a>"
-                output.appendChild(recipeDiv);
-                console.log(recipe.link)
-            })
-
-        /*} else{
+        ranking.forEach(recipe => {
             let recipeDiv = document.createElement("div")
-            recipeDiv.classname = 'recipe-result'
-            recipeDiv.innerHTML = "No recipes found"
-            output.appendChild(recipeDiv);
-        }*/
+            recipeDiv.className = 'recipe-result'
 
-        output.appendChild(document.createElement('div'));
+            let pic = document.createElement("img")
+            pic.src = recipe.pic || 'images/Kugel.png' 
+            pic.className = 'recipe-image'
 
+            let link = document.createElement("a")
+            link.href = "https://www.instagram.com/p/" + recipe.link
+            link.target = "_blank"
+            link.innerHTML = recipe.name
+
+            recipeDiv.appendChild(pic)
+            recipeDiv.appendChild(link)
+            output.appendChild(recipeDiv)
+        });
     }
 
     function selectAll(Id) {
@@ -416,7 +554,7 @@
                 }
             })
             select.innerHTML = "Deselect All"
-        } else if (select.innerHTML = "Deselect All"){
+        } else if (select.innerHTML == "Deselect All"){
             options.forEach(div => {
                 if (!list.includes(div.id)) {
                     add(div.id)
