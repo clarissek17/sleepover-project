@@ -1,0 +1,19 @@
+Author: Clarisse
+Title: clareatsfood recipe finder
+Last Update: May 15th, 2026
+Purpose:
+This project is a recipe finder that offers the user recipes based on the ingredients they have available in their pantry.
+It allows users to select ingredients they have and reject ingredients they don't like.
+Then, it calculates the recipes that best fit their selections.
+All of the recipes offered are linked to my Food Instagram account (@clareatsfood), where I post easy reciped I've developed / Improved.
+
+***NOTE ABOUT SLEEPOVER HOURS TRACKING***
+I inadvertantly added two unrelated project files to my folder on my computer, so Hackatime is logging 7 hours 50 mins when it should be 5 hours 5o mins (it's logging 2 extra hours from my work on the unrelated files).
+
+WHY I made this project: I wanted to sort my recipes with an easy-to-use recipe finder so my mom could
+easily find a recipe when she's trying to use up a specific ingredient in the kitchen. If I ever decide
+to take my passion for food more seriously, it's also a good porfolio piece to have.
+
+HOW I made this project: I coded it in HTML/CSS/JS. No known bugs, but CSS was a struggle and may be wonky on mobile / different screen sizes.
+AI was used in this project to format the recipes and their ingredients list into JSON, and sometimes to add the ingredient IDs to the ingredient div onclicks / oncontextmenus.
+Photos are my own.
